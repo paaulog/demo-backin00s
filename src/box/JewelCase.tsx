@@ -70,6 +70,8 @@ export function JewelCase(props: JewelCaseProps) {
   const { player } = useSpring({ player: state === 'discInHand' || state === 'playing' ? 1 : 0, immediate });
   const { wrap } = useSpring({ wrap: wrapped ? 0 : 1, config: { tension: 70, friction: 16 }, immediate });
   const { reader } = useSpring({ reader: bookletOpen ? 1 : 0, config: { tension: 100, friction: 20 }, immediate });
+  // Ao ser puxada, a caixa voa da torre (ao fundo, à esquerda) até o primeiro plano (RF14).
+  const { fly } = useSpring({ from: { fly: 0 }, to: { fly: 1 }, config: { tension: 70, friction: 18 }, immediate });
 
   const pointer = (e: ThreeEvent<PointerEvent>, on: boolean) => {
     e.stopPropagation();
@@ -81,6 +83,11 @@ export function JewelCase(props: JewelCaseProps) {
   };
 
   return (
+    <animated.group
+      position-x={fly.to((f) => (1 - f) * -300)}
+      position-z={fly.to((f) => (1 - f) * -420)}
+      rotation-y={fly.to((f) => (1 - f) * 1.2)}
+    >
     <animated.group position-x={rigX}>
       <Base plastic={plastic} tray={tray} album={album} onTrayClick={state === 'discInHand' ? click({ type: 'RETURN_DISC' }) : undefined} />
 
@@ -135,6 +142,7 @@ export function JewelCase(props: JewelCaseProps) {
       </animated.group>
 
       <Shrinkwrap progress={wrap} album={album} onClick={wrapped && state === 'closed' ? click({ type: 'UNWRAP' }) : undefined} onPointer={pointer} />
+    </animated.group>
     </animated.group>
   );
 }

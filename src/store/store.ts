@@ -41,6 +41,9 @@ interface CollectionSlice {
   importing: { done: number; total: number } | null;
   warnings: string[];
   shelfSort: ShelfSort;
+  /** Álbum com foco de teclado na estante (destacado na torre). */
+  shelfFocus: string | null;
+  setShelfFocus(id: string | null): void;
   addAlbums(albums: Album[]): void;
   updateAlbum(id: string, patch: Partial<Album>): void;
   selectAlbum(id: string | null): void;
@@ -85,6 +88,8 @@ export const useApp = create<AppState>()((set) => ({
   importing: null,
   warnings: [],
   shelfSort: 'artist',
+  shelfFocus: null,
+  setShelfFocus: (shelfFocus) => set({ shelfFocus }),
   addAlbums: (incoming) =>
     set((s) => {
       const byId = new Map(s.albums.map((a) => [a.id, a]));

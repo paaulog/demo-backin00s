@@ -4,6 +4,9 @@ import { BookletViewer } from './ui/BookletViewer';
 import { ImportPanel } from './ui/ImportPanel';
 import { PlayerPanel } from './ui/PlayerPanel';
 import { Stage } from './ui/Stage';
+import { SettingsPanel } from './ui/SettingsPanel';
+import { ShelfPanel } from './ui/ShelfPanel';
+import { ThemeController } from './theme/ThemeController';
 
 /** S1: layout base com as três áreas (canvas, controles, player do YouTube). */
 export function App() {
@@ -22,9 +25,12 @@ export function App() {
         <aside className="panel" aria-label="Controles do player" data-testid="controls">
           <PlayerPanel />
           <ImportPanel />
+          <ShelfPanel />
+          <SettingsPanel />
         </aside>
         <section className="video-slot" aria-label="Player do YouTube" hidden data-testid="video-slot" />
       </main>
+      <ThemeController />
       <AnnouncerRegion />
       <BookletViewer />
     </div>

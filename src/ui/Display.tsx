@@ -97,11 +97,17 @@ export const Display = memo(function Display({ trackNumber, time, playing, shuff
         <Digit char={digits[2] ?? '0'} x={step * 3 + 8} />
         <Digit char={digits[3] ?? '0'} x={step * 4 + 8} />
       </svg>
-      <div className="flags" aria-hidden="true">
-        <span className={playing ? 'on' : ''}>PLAY</span>
-        <span className={shuffle ? 'on' : ''}>SHUF</span>
-        <span className={repeat !== 'off' ? 'on' : ''}>{repeat === 'track' ? 'REP 1' : 'REP'}</span>
-      </div>
+      <svg width={38} height={H + 6} viewBox={`0 0 38 ${H + 6}`} aria-hidden="true" style={{ fontSize: 9, fontWeight: 600, letterSpacing: '0.08em' }}>
+        {[
+          ['PLAY', playing],
+          ['SHUF', shuffle],
+          [repeat === 'track' ? 'REP 1' : 'REP', repeat !== 'off'],
+        ].map(([label, on], i) => (
+          <text key={i} x={0} y={10 + i * 12} fill="currentColor" opacity={on ? 1 : 0.18}>
+            {label}
+          </text>
+        ))}
+      </svg>
       <span className="sr-only" data-testid="display-label">{label}</span>
       {message && <span className="msg">{message}</span>}
     </div>

@@ -2,7 +2,7 @@
   --bg: #eceae6;
   --surface: #ffffff;
   --text: #1d1d1f;
-  --muted: color-mix(in srgb, var(--text) 55%, transparent);
+  --muted: color-mix(in srgb, var(--text) 72%, var(--bg));
   --line: color-mix(in srgb, var(--text) 12%, transparent);
   --accent: #3a6df0;
   --font: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
@@ -194,14 +194,15 @@ select {
 }
 
 .btn.primary {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #fff;
+  background: var(--text);
+  border-color: var(--text);
+  color: var(--bg);
 }
 
 .btn[aria-pressed='true'] {
   border-color: var(--accent);
-  color: var(--accent);
+  box-shadow: inset 0 0 0 1px var(--accent);
+  font-weight: 600;
 }
 
 .row {
@@ -314,8 +315,8 @@ select {
 }
 
 .tracklist .current {
-  color: var(--accent);
-  font-weight: 600;
+  font-weight: 650;
+  box-shadow: inset 3px 0 0 var(--accent);
 }
 
 .tracklist .unavailable {
@@ -530,4 +531,8 @@ select {
 .footnote {
   font-size: 11px;
   color: var(--muted);
+}
+
+.stage canvas {
+  transition: background-color var(--theme-transition) ease;
 }
