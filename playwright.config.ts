@@ -8,7 +8,7 @@ export default defineConfig({
   expect: { timeout: 10_000, toHaveScreenshot: { maxDiffPixelRatio: 0.03 } },
   fullyParallel: true,
   retries: process.env.CI ? 1 : 0,
-  reporter: process.env.CI ? [['list'], ['html', { open: 'never' }]] : 'list',
+  reporter: process.env.CI ? [['github'], ['list'], ['html', { open: 'never' }]] : 'list',
   use: {
     baseURL: `http://localhost:${PORT}/demo-backin00s/`,
     trace: 'retain-on-failure',
