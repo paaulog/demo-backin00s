@@ -39,7 +39,7 @@ function cspPlugin(apiBase: string): Plugin {
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), 'VITE_');
   return {
-    base: env.VITE_BASE_PATH ?? '/demo-backin00s/',
+    base: env.VITE_BASE_PATH || '/demo-backin00s/',
     plugins: [react(), cspPlugin(env.VITE_API_BASE ?? '')],
     worker: { format: 'es' },
     build: {
