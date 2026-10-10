@@ -39,7 +39,7 @@ test('sem violações graves de acessibilidade (axe)', async ({ page }) => {
   await loadDemo(page, '?no3d');
   const results = await new AxeBuilder({ page }).analyze();
   const serious = results.violations.filter((v) => v.impact === 'serious' || v.impact === 'critical');
-  expect(serious.map((v) => `${v.id}: ${v.nodes.length}`)).toEqual([]);
+  expect(serious.flatMap((v) => v.nodes.map((n) => `${v.id}: ${n.target.join(' ')} ${n.failureSummary ?? ''}`.slice(0, 300)))).toEqual([]);
 });
 
 test.describe('testes visuais da caixa', () => {

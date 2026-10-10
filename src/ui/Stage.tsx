@@ -3,6 +3,7 @@ import { hasWebGL } from '../scene/webgl';
 import { useApp } from '../store/store';
 import { Fallback2D } from './Fallback2D';
 import { SceneActions } from './SceneActions';
+import { SceneBoundary } from './SceneBoundary';
 
 // A cena 3D (three, R3F, postprocessing) carrega sob demanda, fora do bundle inicial.
 const Scene = lazy(() => import('../scene/Scene'));
@@ -16,9 +17,11 @@ export function Stage() {
   return (
     <>
       {use3d ? (
-        <Suspense fallback={<div className="empty-stage">Montando a cena…</div>}>
-          <Scene />
-        </Suspense>
+        <SceneBoundary>
+          <Suspense fallback={<div className="empty-stage">Montando a cena…</div>}>
+            <Scene />
+          </Suspense>
+        </SceneBoundary>
       ) : (
         <Fallback2D />
       )}

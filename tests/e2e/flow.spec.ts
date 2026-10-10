@@ -27,9 +27,14 @@ async function action(page: Page, type: string) {
 test.describe('critério de sucesso do PRD', () => {
   test('carregar pasta, tirar plástico, abrir, tirar disco, tocar, folhear encarte', async ({ page }) => {
     const uploads = watchUploads(page);
+    const errors: string[] = [];
+    page.on('pageerror', (e) => errors.push(e.message));
+    page.on('console', (m) => m.type() === 'error' && errors.push(m.text()));
     await page.goto('./');
     await page.getByTestId('folder-input').setInputFiles(demoDir);
 
+    await page.waitForTimeout(2000);
+    expect(errors, 'erros no console').toEqual([]);
     await expect(page.getByTestId('album-title')).toHaveText('Lado B do Futuro');
     // A faixa oculta (faixa 0) fica fora da tracklist visível.
     await expect(page.getByTestId('tracklist').locator('li')).toHaveCount(4);
