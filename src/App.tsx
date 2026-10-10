@@ -1,5 +1,7 @@
 import { DonateButton } from './ui/DonateButton';
+import { AnnouncerRegion } from './ui/AnnouncerRegion';
 import { ImportPanel } from './ui/ImportPanel';
+import { PlayerPanel } from './ui/PlayerPanel';
 
 /** S1: layout base com as três áreas (canvas, controles, player do YouTube). */
 export function App() {
@@ -14,10 +16,12 @@ export function App() {
       <main className="layout">
         <section className="stage" aria-label="Cena da caixa de CD" data-testid="stage" />
         <aside className="panel" aria-label="Controles do player" data-testid="controls">
+          <PlayerPanel />
           <ImportPanel />
         </aside>
         <section className="video-slot" aria-label="Player do YouTube" hidden data-testid="video-slot" />
       </main>
+      <AnnouncerRegion />
     </div>
   );
 }
