@@ -21,6 +21,8 @@ function watchUploads(page: Page): string[] {
 async function action(page: Page, type: string) {
   const btn = page.locator(`[data-testid="scene-actions"] [data-action="${type}"]`);
   await expect(btn).toBeVisible();
+  // A arte gerada (páginas do encarte) pode demorar com GPU por software no CI.
+  await expect(btn).toBeEnabled({ timeout: 30_000 });
   await btn.click();
 }
 
