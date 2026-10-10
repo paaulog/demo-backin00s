@@ -1,0 +1,17 @@
+{
+  "id": "1d3b7c4e-1111-4a2b-9c3d-0123456789ab",
+  "title": "Da Lama ao Caos",
+  "date": "1994-04-04",
+  "artist-credit": [{ "name": "Chico Science", "joinphrase": " & " }, { "name": "Nação Zumbi" }],
+  "label-info": [{ "label": { "name": "Chaos" } }],
+  "release-group": { "id": "9f8e7d6c-2222-4b3a-8d4c-abcdef012345" },
+  "media": [
+    {
+      "position": 1,
+      "tracks": [
+        { "position": 1, "number": "1", "title": "Monólogo ao Pé do Ouvido", "length": 74000 },
+        { "position": 2, "number": "2", "title": "Banditismo por uma Questão de Classe", "length": 221000 }
+      ]
+    }
+  ]
+}

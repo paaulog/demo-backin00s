@@ -1,3 +1,4 @@
+import { processAlbumArt } from '../art/pipeline';
 import { config } from '../config';
 import type { Album } from '../core/types';
 import { localSource, type ImportItem } from '../sources/local/LocalSource';
@@ -56,3 +57,6 @@ export async function loadDemoAlbum(): Promise<Album[]> {
   );
   return importItems(items);
 }
+
+// A arte de cada álbum é resolvida depois da importação, sem travar a coleção.
+onAlbumImported((album) => void processAlbumArt(album));

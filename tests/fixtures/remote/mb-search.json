@@ -1,0 +1,26 @@
+{
+  "created": "2026-10-10T15:00:00.000Z",
+  "count": 2,
+  "offset": 0,
+  "releases": [
+    {
+      "id": "1d3b7c4e-1111-4a2b-9c3d-0123456789ab",
+      "score": 100,
+      "title": "Da Lama ao Caos",
+      "status": "Official",
+      "date": "1994-04-04",
+      "track-count": 13,
+      "artist-credit": [{ "name": "Chico Science", "joinphrase": " & " }, { "name": "Nação Zumbi" }],
+      "release-group": { "id": "9f8e7d6c-2222-4b3a-8d4c-abcdef012345", "primary-type": "Album" },
+      "label-info": [{ "catalog-number": "850.195/2-464", "label": { "id": "x", "name": "Chaos" } }]
+    },
+    {
+      "id": "2e4c8d5f-3333-4c3b-8d4e-1234567890bc",
+      "score": 88,
+      "title": "Da Lama ao Caos",
+      "date": "2004",
+      "track-count": 15,
+      "artist-credit": [{ "name": "Chico Science & Nação Zumbi" }]
+    }
+  ]
+}
