@@ -13,6 +13,7 @@ export default tseslint.config(
     rules: {
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
+      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
       'no-restricted-properties': [
         'error',
         { property: 'innerHTML', message: 'Metadados são dados não confiáveis: use textContent.' },

@@ -1,3 +1,4 @@
+import { caseState, pullAlbum } from '../box/boxActor';
 import { processAlbumArt } from '../art/pipeline';
 import { config } from '../config';
 import type { Album } from '../core/types';
@@ -26,7 +27,8 @@ export async function importItems(items: ImportItem[]): Promise<Album[]> {
     if (albums.length) {
       useApp.getState().addAlbums(albums);
       const first = albums[0];
-      if (first && !useApp.getState().currentAlbumId) useApp.getState().selectAlbum(first.id);
+      // O primeiro álbum importado já vem para o primeiro plano: o visitante não precisa de instruções.
+      if (first && caseState() === 'shelf') void pullAlbum(first.id);
       useApp.getState().announce(
         albums.length === 1 ? `Álbum carregado: ${first?.title ?? ''}` : `${albums.length} álbuns carregados`,
       );
