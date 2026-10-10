@@ -536,3 +536,11 @@ select {
 .stage canvas {
   transition: background-color var(--theme-transition) ease;
 }
+
+select {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 3px 6px;
+}

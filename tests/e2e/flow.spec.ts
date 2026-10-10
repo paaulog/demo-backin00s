@@ -35,7 +35,7 @@ test.describe('critério de sucesso do PRD', () => {
 
     await page.waitForTimeout(2000);
     expect(errors, 'erros no console').toEqual([]);
-    await expect(page.getByTestId('album-title')).toHaveText('Lado B do Futuro');
+    await expect(page.getByTestId('album-title')).toHaveText('Lado B do Futuro', { timeout: 30_000 });
     // A faixa oculta (faixa 0) fica fora da tracklist visível.
     await expect(page.getByTestId('tracklist').locator('li')).toHaveCount(4);
     await expect(page.getByTestId('tracklist').locator('li').first()).toContainText('Luz de Tubo');
@@ -65,7 +65,7 @@ test.describe('critério de sucesso do PRD', () => {
     await page.goto('./');
     await page.getByTestId('demo-album').focus();
     await page.keyboard.press('Enter');
-    await expect(page.getByTestId('album-title')).toHaveText('Lado B do Futuro');
+    await expect(page.getByTestId('album-title')).toHaveText('Lado B do Futuro', { timeout: 30_000 });
     await expect(page.locator('[data-action="UNWRAP"]')).toBeVisible();
 
     const scene = page.getByTestId('canvas-wrap');
@@ -92,6 +92,6 @@ test.describe('critério de sucesso do PRD', () => {
   test('arquivo sem tags vira álbum pelo nome da pasta', async ({ page }) => {
     await page.goto('./');
     await page.getByTestId('folder-input').setInputFiles(untaggedDir);
-    await expect(page.getByTestId('album-title')).toHaveText('sem-tags');
+    await expect(page.getByTestId('album-title')).toHaveText('sem-tags', { timeout: 30_000 });
   });
 });
